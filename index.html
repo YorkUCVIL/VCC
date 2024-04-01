@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="description"
         content="Visual Concept Connectome (VCC): Open World Concept Discovery and their Interlayer Connections in Deep Models.">
-  <meta name="keywords" content="Interpretability, Transformers, Video, Universal, Concept">
+  <meta name="keywords" content="Interpretability, Multilayer, Concepts">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Visual Concept Connectome (VCC): Open World Concept Discovery and their Interlayer Connections in Deep Models</title>
 
@@ -41,6 +41,9 @@
   <script src="./static/js/index.js"></script>
 
   <style>
+          p {
+            margin-bottom: 10px;
+          }
 		  .main-container {
 			display: flex;
 			justify-content: center;
@@ -207,7 +210,7 @@
                   </span>
                   <span>Paper</span>
                 </a>
-              <!-- Video Link. -->
+<!--               Video Link. -->
 <!--              <span class="link-block">-->
 <!--                <a href="https://yorkucvil.github.io/VTCD"-->
 <!--                   class="external-link button is-normal is-rounded is-dark">-->
@@ -217,7 +220,7 @@
 <!--                  <span>Video</span>-->
 <!--                </a>-->
 <!--              </span>-->
-              <!-- Code Link. -->
+<!--               Code Link. -->
               <span class="link-block">
                 <a href="https://yorkucvil.github.io/VCC/"
                    class="external-link button is-normal is-rounded is-dark">
@@ -225,6 +228,12 @@
                       <i class="fab fa-github"></i>
                   </span>
                   <span>Code (coming soon)</span>
+                  </a>
+              </span>
+              <span class="link-block">
+                <a href="https://yorkucvil.github.io/VCC/"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span>Demo (coming soon)</span>
                   </a>
               </span>
 
@@ -239,14 +248,19 @@
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
-      <h2 class="title is-3">A `connectome' maps every neuron and synapse in a biological neural network. Is it possible
-        to visualize all human interpretable concepts and connections in every layer of a DNN?</h2>
-      <div style='margin-bottom: 20px; text-align: center;'>
+      <div class="columns is-centered has-text-centered">
+        <div class="content has-text-justified">
+        <h2 class="title is-3">A `connectome' maps every neuron and synapse in a biological neural network. Is it possible
+          to visualize all human interpretable concepts and connections in every layer of a DNN? Visual Concept
+          Connectomes discover concepts and quantify their interlayer connections in DNNs.</h2>
+        </div>
+        </div>
+      <div style='margin-bottom: 1px; text-align: center;'>
         <img src='img/AllLayerVCC.png'>
       </div>
-      <h2 class="subtitle has-text-centered">
-        Visual Concept Connectomes discover concepts and quantify their interlayer connections in DNNs.
-      </h2>
+<!--      <h2 class="subtitle has-text-centered">-->
+<!--        Visual Concept Connectomes discover concepts and quantify their interlayer connections in DNNs.-->
+<!--      </h2>-->
     </div>
   </div>
 </section>
@@ -261,7 +275,7 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-          Understanding what deep network models capture in their learned representations is a fundamental challenge
+            Understanding what deep network models capture in their learned representations is a fundamental challenge
             in computer vision. We present a new methodology to understanding such vision models, the Visual Concept
             Connectome (VCC), which discovers human interpretable concepts and their interlayer connections in a
             fully unsupervised manner. Our approach simultaneously reveals fine-grained concepts at a layer,
@@ -290,15 +304,16 @@
       <div class="column">
         <div class="content">
           <h2 class="title is-3">Method Overview</h2>
-            <h3 id="figure2">Concept Discovery</h3>
               <p>
-                METHOD A
-
-                METHOD B
-
-                METHOD C
+                A VCC is constructed in three main steps as shown in Figure 2. (A) Image segments are extracted in the model’s feature space
+                via divisive clustering to produce semantically meaningful image regions for each selected layer.
+                (B) Layer-wise concepts, i.e. the nodes of the graph, are discovered in an open world fashion
+                (i.e. no labelled data is required) via a second round of clustering over the dataset of image
+                regions, independently for each layer.
+                (C) Edges are calculated that indicate the contribution of concepts from earlier to deeper layers
+                via an approach we introduce, Interlayer Testing with Concept Activation Vectors (ITCAVs) - an
+                interlayer generalization of the TCAV method.
               </p>
-
             <img src='img/method.png'>
 
         </div>
@@ -309,363 +324,461 @@
     <div class="columns is-centered">
       <div class="column is-full-width">
         <h2 class="title is-3">Results</h2>
-
-        <p style='margin-bottom: 20px;' >
-          We analyze four different models trained for different tasks: (i) TCOW trained for semi-supervised video
-          object segmentation to track objects through occlusions (ii) Supervised VideoMAE trained for action recognition (iii)
-          Self-supervised VideoMAE and (iv) InternVideo trained on video-text pairs via contrastive learning.
-        </p>
-
-        <!-- Interpolating. -->
-        <h3 class="title is-4">Most Important Concepts Discovered</h3>
-
-        <h4 class="title is-5">Semi-supervised VOS Concepts - TCOW Concepts</h4>
-
-<!--        <h5 class="title is-6">TCOW Concept 1 - Layer 5 Head 8</h5>-->
-        <p>
-          Shown below are the most three important concepts discovered by VTCD for TCOW. We find that the most
-          important concept highlights objects with similar appearance, suggesting
-          the model solving the disambiguation problem by first identifying
-          possible distractors in mid-layers. The second concept highlights the
-          target object throughout the video. The third concept captures temporally invariant
-          spatial position in the top-left region of the video.
-        </p>
-        <div  class="video-container-single">
-          <div style='margin-bottom: 20px;' class="video-wrapper-single">
-            <div class="video-title">Concept 1 - Layer 5 Head 8</div>
-            <video autoplay loop muted controls width="100%" height="auto">
-              <source
-                src="concepts/Important/tcow/1/layer4_head7_concept_7_tube_5.mp4"
-                type="video/mp4"
-              />
-            </video>
-          </div>
-          <div class="vertical-divider"></div>
-          <div class="video-wrapper-single">
-            <div class="video-title">Concept 2 - Layer 9 Head 12</div>
-            <video autoplay loop muted controls width="100%" height="auto">
-              <source
-                src="concepts/Important/tcow/2/layer8_head11_concept_3_tube_0.mp4"
-                type="video/mp4"
-              />
-            </video>
-          </div>
-          <div class="vertical-divider"></div>
-          <div class="video-wrapper-single">
-            <div class="video-title">Concept 3 - Layer 3 Head 11</div>
-            <video autoplay loop muted controls width="100%" height="auto">
-              <source
-                src="concepts/Important/tcow/3/layer2_head10_concept_3_tube_3.mp4"
-                type="video/mp4"
-              />
-            </video>
-          </div>
-          <div class="video-wrapper-single">
-            <video autoplay loop muted controls width="100%" height="auto">
-              <source
-                src="concepts/Important/tcow/1/layer4_head7_concept_7_tube_4.mp4"
-                type="video/mp4"
-              />
-            </video>
-          </div>
-          <div class="vertical-divider"></div>
-          <div class="video-wrapper-single">
-            <video autoplay loop muted controls width="100%" height="auto">
-              <source
-                src="concepts/Important/tcow/2/layer8_head11_concept_3_tube_5.mp4"
-                type="video/mp4"
-              />
-            </video>
-          </div>
-          <div class="vertical-divider"></div>
-          <div class="video-wrapper-single">
-            <div class="video-title"></div>
-            <video autoplay loop muted controls width="100%" height="auto">
-              <source
-                src="concepts/Important/tcow/3/layer2_head10_concept_3_tube_7.mp4"
-                type="video/mp4"
-              />
-            </video>
-          </div>
-        </div>
-
-
-
-        <h4 class="title is-5">Action Recognition Concepts - VideoMAE Concepts</h4>
-
-<!--        <h5 class="title is-6">TCOW Concept 1 - Layer 5 Head 8</h5>-->
-        <p>
-          Shown below are the most three important concepts discovered by VTCD for VideoMAE trained on SSv2 targetting
-          the class `dropping something into
-          something'. The first concept highlights the object being dropped until the dropping event, at which point
-            both the object and container are highlighted. The second concept captures the container being dropped into,
-            notably not capturing the object itself and making a ring-like shape. As in the TCOW model, VideoMAE also
-          contains concepts that capture spatial information, this one highlighting the center of the video.
-        </p>
-        <div  class="video-container-single">
-          <div style='margin-bottom: 20px;' class="video-wrapper-single">
-            <div class="video-title">Concept 1 - Layer 5 Head 8</div>
-            <video autoplay loop muted controls width="100%" height="auto">
-              <source
-                src="concepts/Important/videomae/1/layer10_head8_concept_5_tube_3.mp4"
-                type="video/mp4"
-              />
-            </video>
-          </div>
-          <div class="vertical-divider"></div>
-          <div class="video-wrapper-single">
-            <div class="video-title">Concept 2 - Layer 9 Head 12</div>
-            <video autoplay loop muted controls width="100%" height="auto">
-              <source
-                src="concepts/Important/videomae/2/layer7_head0_concept_5_tube_3.mp4"
-                type="video/mp4"
-              />
-            </video>
-          </div>
-          <div class="vertical-divider"></div>
-          <div class="video-wrapper-single">
-            <div class="video-title">Concept 3 - Layer 3 Head 11</div>
-            <video autoplay loop muted controls width="100%" height="auto">
-              <source
-                src="concepts/Important/videomae/3/layer3_head2_concept_9_tube_2.mp4"
-                type="video/mp4"
-              />
-            </video>
-          </div>
-          <div class="video-wrapper-single">
-            <video autoplay loop muted controls width="100%" height="auto">
-              <source
-                src="concepts/Important/videomae/1/layer10_head8_concept_5_tube_4.mp4"
-                type="video/mp4"
-              />
-            </video>
-          </div>
-          <div class="vertical-divider"></div>
-          <div class="video-wrapper-single">
-            <video autoplay loop muted controls width="100%" height="auto">
-              <source
-                src="concepts/Important/videomae/2/layer7_head0_concept_5_tube_4.mp4"
-                type="video/mp4"
-              />
-            </video>
-          </div>
-          <div class="vertical-divider"></div>
-          <div class="video-wrapper-single">
-            <div class="video-title"></div>
-            <video autoplay loop muted controls width="100%" height="auto">
-              <source
-                src="concepts/Important/videomae/3/layer3_head2_concept_9_tube_3.mp4"
-                type="video/mp4"
-              />
-            </video>
-          </div>
-        </div>
-
-        <h3 class="title is-4">Rosetta Concepts</h3>
-        <p>
-          We now mine for Rosetta concepts across the models. Shown below are a sample of Rosetta concepts found
-          for the target SSv2 class `rolling something on a flat surface'. We find universal concepts across all models
-          capturing diverse information such as spatial position information and object centric concepts.
-        </p>
-        <h3 style='margin-top: 40px;' class="title is-5">Spatial Positions</h3>
-                  <div class="video-container-rosetta">
-            <div class="video-wrapper-rosetta">
-              <div class="video-title">Input</div>
-              <video autoplay loop muted controls width="100%" height="auto">
-                <source
-                  src="concepts/Rosetta/rsoafs_top10/1/rgb_video_4.mp4"
-                  type="video/mp4"
-                />
-              </video>
+          <h2 class="title is-4">Visualizing concept hierarchies</h2>
+            <p>
+                Figure 4 shows a three layer VCC for GoogLeNet targeting the class “Jay”. Notice how the inception5b
+                ‘bird’ concepts (c51, c52) form as selective weighting of inception4c concepts background (c41),
+                bird part (c42, c44) and tree branch (c43), while the inception5b background concepts (c53, c54)
+                form differently from weighting of solely inception4c background part concepts (e.g. tree branch (c43)
+                and green leaves (c41)). Notably, the network separates subspecies of Jay in the final layer
+                (e.g. Blue Jay (c52 ) and other types (c51 )). The concepts found in inception4c are composed from
+                varying combinations of colors and parts found in conv3 (e.g. various bird parts (c31, c33) contribute
+                to the bird concepts at inception4c). In the end, both scene and object contribute with strong weights
+                to the final category.
+            </p>
+            <div style="text-align: center; margin-bottom: 20px">
+                <img src="img/Jay.png" width="75%" height="auto">
             </div>
-            <div class="video-wrapper-rosetta">
-              <div class="video-title">TCOW Layer3</div>
-              <video autoplay loop muted controls width="100%" height="auto">
-                <source
-                  src="concepts/Rosetta/rsoafs_top10/1/tcow/layer2_head3_concept_concept_11_tube_23.mp4"
-                  type="video/mp4"
-                />
-              </video>
-            </div>
-            <div class="video-wrapper-rosetta">
-              <div class="video-title">VidMAE Layer3</div>
-              <video autoplay loop muted controls width="100%" height="auto">
-                <source
-                  src="concepts/Rosetta/rsoafs_top10/1/vidmae/layer2_head1_concept_concept_7_tube_11.mp4"
-                  type="video/mp4"
-                />
-              </video>
-            </div>
-            <div class="video-wrapper-rosetta">
-              <div class="video-title">VidMAESSL Layer3</div>
-              <video autoplay loop muted controls width="100%" height="auto">
-                <source
-                  src="concepts/Rosetta/rsoafs_top10/1/ssl/layer2_head3_concept_concept_1_tube_1.mp4"
-                  type="video/mp4"
-                />
-              </video>
-            </div>
-            <div class="video-wrapper-rosetta">
-              <div class="video-title">InternVideo Layer4</div>
-              <video autoplay loop muted controls width="100%" height="auto">
-                <source
-                  src="concepts/Rosetta/rsoafs_top10/1/intern/layer3_head0_concept_concept_8_tube_4.mp4"
-                  type="video/mp4"
-                />
-              </video>
-            </div>
-          </div>
-
-                <div class="video-container-rosetta">
-            <div class="video-wrapper-rosetta">
-                <div class="video-title">Input</div>
-                  <video autoplay loop muted controls width="100%" height="auto">
-                    <source src="concepts/Rosetta/rsoafs_top10/2/rgb_video_0.mp4" type="video/mp4">
-                  </video>
-                </div>
-            <div class="video-wrapper-rosetta">
-                <div class="video-title">TCOW Layer3</div>
-                  <video autoplay loop muted controls width="100%" height="auto">
-                    <source src="concepts/Rosetta/rsoafs_top10/2/tcow/layer2_head1_concept_2_tube_23.mp4" type="video/mp4">
-                  </video>
-                </div>
-            <div class="video-wrapper-rosetta">
-                <div class="video-title">VidMAE Layer5</div>
-                  <video autoplay loop muted controls width="100%" height="auto">
-                    <source src="concepts/Rosetta/rsoafs_top10/2/vidmae/layer4_head3_concept_4_tube_23.mp4" type="video/mp4">
-                  </video>
-                </div>
-            <div class="video-wrapper-rosetta">
-                <div class="video-title">VidMAE-SSL Layer1</div>
-                  <video autoplay loop muted controls width="100%" height="auto">
-                    <source src="concepts/Rosetta/rsoafs_top10/2/ssl/layer10_head8_concept_6_tube_15.mp4" type="video/mp4">
-                  </video>
-                </div>
-            <div class="video-wrapper-rosetta">
-                <div class="video-title">InternVideo Layer7</div>
-                  <video autoplay loop muted controls width="100%" height="auto">
-                    <source src="concepts/Rosetta/rsoafs_top10/2/intern/layer6_head4_concept_5_tube_0.mp4" type="video/mp4">
-                  </video>
-                </div>
-        </div>
 
 
-        <h3 style='margin-top: 40px;' class="title is-5">Object Tracking</h3>
+          <h2 class="title is-4">Subgraph Quantitative Analysis</h2>
+            <p>
+              We now quantitatively analyze four-layer VCCs generated for the following CNNs and transformers:
+              ResNet50, VGG16, MobileNetv3, ViT-b and MViT. Layers are selected approximately uniformly across a
+              model to capture concepts at different abstractions. We use standard metrics for analyzing tree-like
+              data structures in a per-layer fashion: branching factor (extent to which the representation is
+              distributed), number of nodes (how many concepts the model uses to encode a particular class), edge
+              weights (strength of connection between concepts) and edge weight variance (variability of connection
+              strength).
+            </p>
 
-        <div class="video-container-rosetta">
-            <div class="video-wrapper-rosetta">
-              <div class="video-title">Input</div>
-              <video autoplay loop muted controls width="110%" height="auto">
-                <source
-                  src="concepts/Rosetta/RosettaConceptsRolling/intern_rgb_video_18.mp4"
-                  type="video/mp4"
-                />
-              </video>
+            <p>
+              We calculate averages over 50 VCCs for 50 randomly selected ImageNet classes.
+              Patterns are apparent in concept numbers and edge weights: more, but weaker,
+              concepts in early layers vs. fewer, but stronger, concepts in later layers. These patterns
+              reflect the shared low-level features (e.g. colors, textures) across classes and more specific
+              features near the end, which yield larger ITCAV values. Also, CNNs show a decreasing branching factor,
+              while transformers maintain a consistent number until the final layer, where all models converge to
+              about two concepts, typically of an ImageNet class’s foreground-background structure. Transformers
+              have higher final layer edge weight variance compared to CNNs, indicating their ability to better
+              differentiate earlier concepts’ importance in forming later concepts, potentially explaining their
+              superior classification performance (i.e. all information is not equally valuable).
+            </p>
+
+            <p>
+              We also compare models (ResNet50 and VGG16) when trained with self-supervision (SimCLR) or for adversarial
+              robustness, i.e. on Stylized ImageNet (ADV). We observe that robust and self-supervised models
+              have fewer low-level concepts and compositionality than the originals, likely as their training yields
+              less reliance on texture (stylization perturbs texture) and color (SimCLR training jitters color).
+            </p>
+            <div style="text-align: center;">
+                <img src="img/SubGraphMetrics.png" width="100%" height="auto">
             </div>
-            <div class="video-wrapper-rosetta">
-              <div class="video-title">TCOW Layer9</div>
-              <video autoplay loop muted controls width="100%" height="auto">
-                <source
-                  src="concepts/Rosetta/RosettaConceptsRolling/tcow/layer8_head7_concept_3_tube_14.mp4"
-                  type="video/mp4"
-                />
-              </video>
-            </div>
-            <div class="video-wrapper-rosetta">
-              <div class="video-title">VidMAE Layer11</div>
-              <video autoplay loop muted controls width="100%" height="auto">
-                <source
-                  src="concepts/Rosetta/RosettaConceptsRolling/vidmae/layer10_head3_tube_18.mp4"
-                  type="video/mp4"
-                />
-              </video>
-            </div>
-            <div class="video-wrapper-rosetta">
-              <div class="video-title">VidMAE-SSL Layer12</div>
-              <video autoplay loop muted controls width="100%" height="auto">
-                <source
-                  src="concepts/Rosetta/RosettaConceptsRolling/ssl/layer11_head6_tube_16.mp4"
-                  type="video/mp4"
-                />
-              </video>
-            </div>
-            <div class="video-wrapper-rosetta">
-              <div class="video-title">InternVideo Layer10</div>
-              <video autoplay loop muted controls width="100%" height="auto">
-                <source
-                  src="concepts/Rosetta/RosettaConceptsRolling/intern/layer9_head4_tube_18.mp4"
-                  type="video/mp4"
-                />
-              </video>
-            </div>
-          </div>
 
 
-        <div class="video-container-rosetta">
-            <div class="video-wrapper-rosetta">
-              <div class="video-title">Input</div>
-              <video autoplay loop muted controls width="100%" height="auto">
-                <source
-                  src="concepts/Rosetta/hands/intern_rgb_video_5.mp4"
-                  type="video/mp4"
-                />
-              </video>
+
+          <h2 class="title is-4">CNNs vs. Transformers: Qualitative Analysis</h2>
+            <p>
+               To examine these patterns further, VCC visualizations for a CNN and transformer subgraphs are shown in Fig. 7.
+              Here, we limit to a ResNet50 and MViT and two later layers with the class output. The connection diversity
+              in the last layer is indeed observed to be larger for the transformer vs. the CNN. Notably, over half
+              of the concepts in the CNN capture background centric concepts, while the transformer has only a single
+              background centric concept.
+            </p>
+            <div style="text-align: center;">
+                <img src="img/CNNvsTRANS.png" width="90%" height="auto">
             </div>
-            <div class="video-wrapper-rosetta">
-              <div class="video-title">TCOW Layer4</div>
-              <video autoplay loop muted controls width="100%" height="auto">
-                <source
-                  src="concepts/Rosetta/hands/tcow/layer3_head5_concept_5_tube_5.mp4"
-                  type="video/mp4"
-                />
-              </video>
-            </div>
-            <div class="video-wrapper-rosetta">
-              <div class="video-title">VidMAE Layer8</div>
-              <video autoplay loop muted controls width="100%" height="auto">
-                <source
-                  src="concepts/Rosetta/hands/videomae/layer7_head0_concept_4_tube_16.mp4"
-                  type="video/mp4"
-                />
-              </video>
-            </div>
-            <div class="video-wrapper-rosetta">
-              <div class="video-title">VidMAE-SSL Layer10</div>
-              <video autoplay loop muted controls width="100%" height="auto">
-                <source
-                  src="concepts/Rosetta/hands/ssl/layer9_head4_concept_5_tube_8.mp4"
-                  type="video/mp4"
-                />
-              </video>
-            </div>
-            <div class="video-wrapper-rosetta">
-              <div class="video-title">InternVideo Layer10</div>
-              <video autoplay loop muted controls width="100%" height="auto">
-                <source
-                  src="concepts/Rosetta/hands/intern/layer10_head1_concept_1_tube_5.mp4"
-                  type="video/mp4"
-                />
-              </video>
-            </div>
-          </div>
 
 
-        <h2 style='margin-top: 60px;' class="title is-3">Application: Efficient Inference with Concept-Head Pruning</h2>
-          <p>
-            We propose a novel method for pruning transformer heads based on their importance. We target a
-            subset (6) of the classes in the SSv2 dataset and prune the least important heads based on CRIS.
-            We find that we can prune 30% of the heads to gain >4% in performance while reducing FLOPS, and
-            up to 50% of the heads without a significant drop in performance.
-        <div style='text-align: center;'>
-          </p>
-			<img src='img/headprune.png' style='width: 500px; height: auto;'>
-		</div>
+          <h2 class="title is-4">All Layer Quantitative Analysis</h2>
+            <p>
+              Figure 6 presents a quantitative analyses on all layer VCCs for three diverse models: (i) a standard CNN, VGG-16,
+              (ii) an efficient model, MobileNetv3 and (iii) a transformer, MViT. Averages are taken over 10 VCCs for
+              10 random ImageNet classes. Common trends appear in all models. Concept
+              composition is non-linear across layers, with branching factor ranging from 5-15 and converging to
+              approximately two near the last layers. The peak number of concepts, around 20, is consistently at 30-40%
+              of network depth and, as in the four-layer analysis, also converges to two in the final layer.
+              Edge weights and variances are in accord with the main findings of the four-layer analysis, but also
+              reveal other insights into the compositional nature of the models. At a fine grained view, all layer analysis,
+              each model more readily displays unique edge weight characteristics: VGG16’s average weights decrease
+              in later layers, MobileNetv3’s drop greatly before the final layer and MViT maintains consistent values.
+              Still, overall these results indicate that penultimate concepts differ between CNNs vs. transformers, as
+              supported by our four-layer VCC analysis. Higher variances in initial layers suggest a
+              diverse combination of concepts, whereas deeper layers indicate a more uniform composition. Transformers,
+              however, show a variance increase in the final layer, indicating greater compositionality.
+            </p>
+            <div style="text-align: center;">
+                <img src="img/ALlLayerMetrics.png" width="70%" height="auto">
+            </div>
+
+          <h2 class="title is-4">Model Debugging with VCCs</h2>
+            <p>
+               To show the VCC’s practical utility, we consider application to model failure analysis. VCCs provide
+              insights on compositional concepts across layers and distributed representations.
+              Figure 8 shows a ‘Tricycle’ incorrectly classified as a ‘Rickshaw’ by a ResNet50 model,
+              and the corresponding incorrect VCC (‘Rickshaw’, left) and correct VCC (‘Tricycle’, right).
+              As the image is decomposed using our top-down segmentation, it is revealed that the
+              majority of pooled segments are closer, in terms of l2 distance, to concepts in the
+              Rickshaw VCC (red outlines) than the tricycle VCC (green outlines). While the model correctly
+              encoded the wheel and handlebar portions of the images as tricycle concepts, the background and
+              collapsible hood concepts are composed from layers two through four as rickshaw concepts,
+              which may cause the error. We also note the lack of other tricycle-specific concepts (e.g. children).
+
+            </p>
+            <div style="text-align: center;">
+                <img src="img/Debug.png" width="50%" height="auto">
+            </div>
+
+<!--        &lt;!&ndash; Interpolating. &ndash;&gt;-->
+<!--        <h3 class="title is-4">Most Important Concepts Discovered</h3>-->
+
+<!--        <h4 class="title is-5">Semi-supervised VOS Concepts - TCOW Concepts</h4>-->
+
+<!--&lt;!&ndash;        <h5 class="title is-6">TCOW Concept 1 - Layer 5 Head 8</h5>&ndash;&gt;-->
+<!--        <p>-->
+<!--          Shown below are the most three important concepts discovered by VTCD for TCOW. We find that the most-->
+<!--          important concept highlights objects with similar appearance, suggesting-->
+<!--          the model solving the disambiguation problem by first identifying-->
+<!--          possible distractors in mid-layers. The second concept highlights the-->
+<!--          target object throughout the video. The third concept captures temporally invariant-->
+<!--          spatial position in the top-left region of the video.-->
+<!--        </p>-->
+<!--        <div  class="video-container-single">-->
+<!--          <div style='margin-bottom: 20px;' class="video-wrapper-single">-->
+<!--            <div class="video-title">Concept 1 - Layer 5 Head 8</div>-->
+<!--            <video autoplay loop muted controls width="100%" height="auto">-->
+<!--              <source-->
+<!--                src="concepts/Important/tcow/1/layer4_head7_concept_7_tube_5.mp4"-->
+<!--                type="video/mp4"-->
+<!--              />-->
+<!--            </video>-->
+<!--          </div>-->
+<!--          <div class="vertical-divider"></div>-->
+<!--          <div class="video-wrapper-single">-->
+<!--            <div class="video-title">Concept 2 - Layer 9 Head 12</div>-->
+<!--            <video autoplay loop muted controls width="100%" height="auto">-->
+<!--              <source-->
+<!--                src="concepts/Important/tcow/2/layer8_head11_concept_3_tube_0.mp4"-->
+<!--                type="video/mp4"-->
+<!--              />-->
+<!--            </video>-->
+<!--          </div>-->
+<!--          <div class="vertical-divider"></div>-->
+<!--          <div class="video-wrapper-single">-->
+<!--            <div class="video-title">Concept 3 - Layer 3 Head 11</div>-->
+<!--            <video autoplay loop muted controls width="100%" height="auto">-->
+<!--              <source-->
+<!--                src="concepts/Important/tcow/3/layer2_head10_concept_3_tube_3.mp4"-->
+<!--                type="video/mp4"-->
+<!--              />-->
+<!--            </video>-->
+<!--          </div>-->
+<!--          <div class="video-wrapper-single">-->
+<!--            <video autoplay loop muted controls width="100%" height="auto">-->
+<!--              <source-->
+<!--                src="concepts/Important/tcow/1/layer4_head7_concept_7_tube_4.mp4"-->
+<!--                type="video/mp4"-->
+<!--              />-->
+<!--            </video>-->
+<!--          </div>-->
+<!--          <div class="vertical-divider"></div>-->
+<!--          <div class="video-wrapper-single">-->
+<!--            <video autoplay loop muted controls width="100%" height="auto">-->
+<!--              <source-->
+<!--                src="concepts/Important/tcow/2/layer8_head11_concept_3_tube_5.mp4"-->
+<!--                type="video/mp4"-->
+<!--              />-->
+<!--            </video>-->
+<!--          </div>-->
+<!--          <div class="vertical-divider"></div>-->
+<!--          <div class="video-wrapper-single">-->
+<!--            <div class="video-title"></div>-->
+<!--            <video autoplay loop muted controls width="100%" height="auto">-->
+<!--              <source-->
+<!--                src="concepts/Important/tcow/3/layer2_head10_concept_3_tube_7.mp4"-->
+<!--                type="video/mp4"-->
+<!--              />-->
+<!--            </video>-->
+<!--          </div>-->
+<!--        </div>-->
 
 
-      </div>
-    </div>
-  </div>
-</section>
+
+<!--        <h4 class="title is-5">Action Recognition Concepts - VideoMAE Concepts</h4>-->
+
+<!--&lt;!&ndash;        <h5 class="title is-6">TCOW Concept 1 - Layer 5 Head 8</h5>&ndash;&gt;-->
+<!--        <p>-->
+<!--          Shown below are the most three important concepts discovered by VTCD for VideoMAE trained on SSv2 targetting-->
+<!--          the class `dropping something into-->
+<!--          something'. The first concept highlights the object being dropped until the dropping event, at which point-->
+<!--            both the object and container are highlighted. The second concept captures the container being dropped into,-->
+<!--            notably not capturing the object itself and making a ring-like shape. As in the TCOW model, VideoMAE also-->
+<!--          contains concepts that capture spatial information, this one highlighting the center of the video.-->
+<!--        </p>-->
+<!--        <div  class="video-container-single">-->
+<!--          <div style='margin-bottom: 20px;' class="video-wrapper-single">-->
+<!--            <div class="video-title">Concept 1 - Layer 5 Head 8</div>-->
+<!--            <video autoplay loop muted controls width="100%" height="auto">-->
+<!--              <source-->
+<!--                src="concepts/Important/videomae/1/layer10_head8_concept_5_tube_3.mp4"-->
+<!--                type="video/mp4"-->
+<!--              />-->
+<!--            </video>-->
+<!--          </div>-->
+<!--          <div class="vertical-divider"></div>-->
+<!--          <div class="video-wrapper-single">-->
+<!--            <div class="video-title">Concept 2 - Layer 9 Head 12</div>-->
+<!--            <video autoplay loop muted controls width="100%" height="auto">-->
+<!--              <source-->
+<!--                src="concepts/Important/videomae/2/layer7_head0_concept_5_tube_3.mp4"-->
+<!--                type="video/mp4"-->
+<!--              />-->
+<!--            </video>-->
+<!--          </div>-->
+<!--          <div class="vertical-divider"></div>-->
+<!--          <div class="video-wrapper-single">-->
+<!--            <div class="video-title">Concept 3 - Layer 3 Head 11</div>-->
+<!--            <video autoplay loop muted controls width="100%" height="auto">-->
+<!--              <source-->
+<!--                src="concepts/Important/videomae/3/layer3_head2_concept_9_tube_2.mp4"-->
+<!--                type="video/mp4"-->
+<!--              />-->
+<!--            </video>-->
+<!--          </div>-->
+<!--          <div class="video-wrapper-single">-->
+<!--            <video autoplay loop muted controls width="100%" height="auto">-->
+<!--              <source-->
+<!--                src="concepts/Important/videomae/1/layer10_head8_concept_5_tube_4.mp4"-->
+<!--                type="video/mp4"-->
+<!--              />-->
+<!--            </video>-->
+<!--          </div>-->
+<!--          <div class="vertical-divider"></div>-->
+<!--          <div class="video-wrapper-single">-->
+<!--            <video autoplay loop muted controls width="100%" height="auto">-->
+<!--              <source-->
+<!--                src="concepts/Important/videomae/2/layer7_head0_concept_5_tube_4.mp4"-->
+<!--                type="video/mp4"-->
+<!--              />-->
+<!--            </video>-->
+<!--          </div>-->
+<!--          <div class="vertical-divider"></div>-->
+<!--          <div class="video-wrapper-single">-->
+<!--            <div class="video-title"></div>-->
+<!--            <video autoplay loop muted controls width="100%" height="auto">-->
+<!--              <source-->
+<!--                src="concepts/Important/videomae/3/layer3_head2_concept_9_tube_3.mp4"-->
+<!--                type="video/mp4"-->
+<!--              />-->
+<!--            </video>-->
+<!--          </div>-->
+<!--        </div>-->
+
+<!--        <h3 class="title is-4">Rosetta Concepts</h3>-->
+<!--        <p>-->
+<!--          We now mine for Rosetta concepts across the models. Shown below are a sample of Rosetta concepts found-->
+<!--          for the target SSv2 class `rolling something on a flat surface'. We find universal concepts across all models-->
+<!--          capturing diverse information such as spatial position information and object centric concepts.-->
+<!--        </p>-->
+<!--        <h3 style='margin-top: 40px;' class="title is-5">Spatial Positions</h3>-->
+<!--                  <div class="video-container-rosetta">-->
+<!--            <div class="video-wrapper-rosetta">-->
+<!--              <div class="video-title">Input</div>-->
+<!--              <video autoplay loop muted controls width="100%" height="auto">-->
+<!--                <source-->
+<!--                  src="concepts/Rosetta/rsoafs_top10/1/rgb_video_4.mp4"-->
+<!--                  type="video/mp4"-->
+<!--                />-->
+<!--              </video>-->
+<!--            </div>-->
+<!--            <div class="video-wrapper-rosetta">-->
+<!--              <div class="video-title">TCOW Layer3</div>-->
+<!--              <video autoplay loop muted controls width="100%" height="auto">-->
+<!--                <source-->
+<!--                  src="concepts/Rosetta/rsoafs_top10/1/tcow/layer2_head3_concept_concept_11_tube_23.mp4"-->
+<!--                  type="video/mp4"-->
+<!--                />-->
+<!--              </video>-->
+<!--            </div>-->
+<!--            <div class="video-wrapper-rosetta">-->
+<!--              <div class="video-title">VidMAE Layer3</div>-->
+<!--              <video autoplay loop muted controls width="100%" height="auto">-->
+<!--                <source-->
+<!--                  src="concepts/Rosetta/rsoafs_top10/1/vidmae/layer2_head1_concept_concept_7_tube_11.mp4"-->
+<!--                  type="video/mp4"-->
+<!--                />-->
+<!--              </video>-->
+<!--            </div>-->
+<!--            <div class="video-wrapper-rosetta">-->
+<!--              <div class="video-title">VidMAESSL Layer3</div>-->
+<!--              <video autoplay loop muted controls width="100%" height="auto">-->
+<!--                <source-->
+<!--                  src="concepts/Rosetta/rsoafs_top10/1/ssl/layer2_head3_concept_concept_1_tube_1.mp4"-->
+<!--                  type="video/mp4"-->
+<!--                />-->
+<!--              </video>-->
+<!--            </div>-->
+<!--            <div class="video-wrapper-rosetta">-->
+<!--              <div class="video-title">InternVideo Layer4</div>-->
+<!--              <video autoplay loop muted controls width="100%" height="auto">-->
+<!--                <source-->
+<!--                  src="concepts/Rosetta/rsoafs_top10/1/intern/layer3_head0_concept_concept_8_tube_4.mp4"-->
+<!--                  type="video/mp4"-->
+<!--                />-->
+<!--              </video>-->
+<!--            </div>-->
+<!--          </div>-->
+
+<!--                <div class="video-container-rosetta">-->
+<!--            <div class="video-wrapper-rosetta">-->
+<!--                <div class="video-title">Input</div>-->
+<!--                  <video autoplay loop muted controls width="100%" height="auto">-->
+<!--                    <source src="concepts/Rosetta/rsoafs_top10/2/rgb_video_0.mp4" type="video/mp4">-->
+<!--                  </video>-->
+<!--                </div>-->
+<!--            <div class="video-wrapper-rosetta">-->
+<!--                <div class="video-title">TCOW Layer3</div>-->
+<!--                  <video autoplay loop muted controls width="100%" height="auto">-->
+<!--                    <source src="concepts/Rosetta/rsoafs_top10/2/tcow/layer2_head1_concept_2_tube_23.mp4" type="video/mp4">-->
+<!--                  </video>-->
+<!--                </div>-->
+<!--            <div class="video-wrapper-rosetta">-->
+<!--                <div class="video-title">VidMAE Layer5</div>-->
+<!--                  <video autoplay loop muted controls width="100%" height="auto">-->
+<!--                    <source src="concepts/Rosetta/rsoafs_top10/2/vidmae/layer4_head3_concept_4_tube_23.mp4" type="video/mp4">-->
+<!--                  </video>-->
+<!--                </div>-->
+<!--            <div class="video-wrapper-rosetta">-->
+<!--                <div class="video-title">VidMAE-SSL Layer1</div>-->
+<!--                  <video autoplay loop muted controls width="100%" height="auto">-->
+<!--                    <source src="concepts/Rosetta/rsoafs_top10/2/ssl/layer10_head8_concept_6_tube_15.mp4" type="video/mp4">-->
+<!--                  </video>-->
+<!--                </div>-->
+<!--            <div class="video-wrapper-rosetta">-->
+<!--                <div class="video-title">InternVideo Layer7</div>-->
+<!--                  <video autoplay loop muted controls width="100%" height="auto">-->
+<!--                    <source src="concepts/Rosetta/rsoafs_top10/2/intern/layer6_head4_concept_5_tube_0.mp4" type="video/mp4">-->
+<!--                  </video>-->
+<!--                </div>-->
+<!--        </div>-->
+
+
+<!--        <h3 style='margin-top: 40px;' class="title is-5">Object Tracking</h3>-->
+
+<!--        <div class="video-container-rosetta">-->
+<!--            <div class="video-wrapper-rosetta">-->
+<!--              <div class="video-title">Input</div>-->
+<!--              <video autoplay loop muted controls width="110%" height="auto">-->
+<!--                <source-->
+<!--                  src="concepts/Rosetta/RosettaConceptsRolling/intern_rgb_video_18.mp4"-->
+<!--                  type="video/mp4"-->
+<!--                />-->
+<!--              </video>-->
+<!--            </div>-->
+<!--            <div class="video-wrapper-rosetta">-->
+<!--              <div class="video-title">TCOW Layer9</div>-->
+<!--              <video autoplay loop muted controls width="100%" height="auto">-->
+<!--                <source-->
+<!--                  src="concepts/Rosetta/RosettaConceptsRolling/tcow/layer8_head7_concept_3_tube_14.mp4"-->
+<!--                  type="video/mp4"-->
+<!--                />-->
+<!--              </video>-->
+<!--            </div>-->
+<!--            <div class="video-wrapper-rosetta">-->
+<!--              <div class="video-title">VidMAE Layer11</div>-->
+<!--              <video autoplay loop muted controls width="100%" height="auto">-->
+<!--                <source-->
+<!--                  src="concepts/Rosetta/RosettaConceptsRolling/vidmae/layer10_head3_tube_18.mp4"-->
+<!--                  type="video/mp4"-->
+<!--                />-->
+<!--              </video>-->
+<!--            </div>-->
+<!--            <div class="video-wrapper-rosetta">-->
+<!--              <div class="video-title">VidMAE-SSL Layer12</div>-->
+<!--              <video autoplay loop muted controls width="100%" height="auto">-->
+<!--                <source-->
+<!--                  src="concepts/Rosetta/RosettaConceptsRolling/ssl/layer11_head6_tube_16.mp4"-->
+<!--                  type="video/mp4"-->
+<!--                />-->
+<!--              </video>-->
+<!--            </div>-->
+<!--            <div class="video-wrapper-rosetta">-->
+<!--              <div class="video-title">InternVideo Layer10</div>-->
+<!--              <video autoplay loop muted controls width="100%" height="auto">-->
+<!--                <source-->
+<!--                  src="concepts/Rosetta/RosettaConceptsRolling/intern/layer9_head4_tube_18.mp4"-->
+<!--                  type="video/mp4"-->
+<!--                />-->
+<!--              </video>-->
+<!--            </div>-->
+<!--          </div>-->
+
+
+<!--        <div class="video-container-rosetta">-->
+<!--            <div class="video-wrapper-rosetta">-->
+<!--              <div class="video-title">Input</div>-->
+<!--              <video autoplay loop muted controls width="100%" height="auto">-->
+<!--                <source-->
+<!--                  src="concepts/Rosetta/hands/intern_rgb_video_5.mp4"-->
+<!--                  type="video/mp4"-->
+<!--                />-->
+<!--              </video>-->
+<!--            </div>-->
+<!--            <div class="video-wrapper-rosetta">-->
+<!--              <div class="video-title">TCOW Layer4</div>-->
+<!--              <video autoplay loop muted controls width="100%" height="auto">-->
+<!--                <source-->
+<!--                  src="concepts/Rosetta/hands/tcow/layer3_head5_concept_5_tube_5.mp4"-->
+<!--                  type="video/mp4"-->
+<!--                />-->
+<!--              </video>-->
+<!--            </div>-->
+<!--            <div class="video-wrapper-rosetta">-->
+<!--              <div class="video-title">VidMAE Layer8</div>-->
+<!--              <video autoplay loop muted controls width="100%" height="auto">-->
+<!--                <source-->
+<!--                  src="concepts/Rosetta/hands/videomae/layer7_head0_concept_4_tube_16.mp4"-->
+<!--                  type="video/mp4"-->
+<!--                />-->
+<!--              </video>-->
+<!--            </div>-->
+<!--            <div class="video-wrapper-rosetta">-->
+<!--              <div class="video-title">VidMAE-SSL Layer10</div>-->
+<!--              <video autoplay loop muted controls width="100%" height="auto">-->
+<!--                <source-->
+<!--                  src="concepts/Rosetta/hands/ssl/layer9_head4_concept_5_tube_8.mp4"-->
+<!--                  type="video/mp4"-->
+<!--                />-->
+<!--              </video>-->
+<!--            </div>-->
+<!--            <div class="video-wrapper-rosetta">-->
+<!--              <div class="video-title">InternVideo Layer10</div>-->
+<!--              <video autoplay loop muted controls width="100%" height="auto">-->
+<!--                <source-->
+<!--                  src="concepts/Rosetta/hands/intern/layer10_head1_concept_1_tube_5.mp4"-->
+<!--                  type="video/mp4"-->
+<!--                />-->
+<!--              </video>-->
+<!--            </div>-->
+<!--          </div>-->
+
+
+<!--        <h2 style='margin-top: 60px;' class="title is-3">Application: Efficient Inference with Concept-Head Pruning</h2>-->
+<!--          <p>-->
+<!--            We propose a novel method for pruning transformer heads based on their importance. We target a-->
+<!--            subset (6) of the classes in the SSv2 dataset and prune the least important heads based on CRIS.-->
+<!--            We find that we can prune 30% of the heads to gain >4% in performance while reducing FLOPS, and-->
+<!--            up to 50% of the heads without a significant drop in performance.-->
+<!--        <div style='text-align: center;'>-->
+<!--          </p>-->
+<!--			<img src='img/headprune.png' style='width: 500px; height: auto;'>-->
+<!--		</div>-->
+
+
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</section>-->
 
 
 <!--<section class="section" id="BibTeX">-->
