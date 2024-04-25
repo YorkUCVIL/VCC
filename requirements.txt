@@ -1,0 +1,11 @@
+matplotlib
+networkx
+tqdm
+scikit-image
+scikit-learn
+ftfy
+regex
+timm==0.6.12
+iopath
+simplejson
+psutil
