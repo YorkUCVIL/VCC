@@ -36,6 +36,8 @@ def plot_classwise_connectome(args,
     # check if args.concept_img_type exists
     if not hasattr(args, 'concept_img_type'):
         args.concept_img_type = 'overlay_images'
+    if not hasattr(args, 'rotate_canvas'):
+        args.rotate_canvas = False
 
     # load concept discovery object
     if cd is None:
