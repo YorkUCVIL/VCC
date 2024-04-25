@@ -1,6 +1,10 @@
 # Visual Concept Connectome (VCC): Open World Concept Discovery and their Interlayer Connections in Deep Models
 Official Implementation of our CVPR 2024 (Highlight) Paper.
 
+[Matthew Kowal](https://mkowal2.github.io/),
+[Richard P. Wildes](http://www.cse.yorku.ca/~wildes/), 
+[Konstantinos G. Derpanis](https://csprofkgd.github.io/)
+
 [Paper](https://arxiv.org/abs/2404.02233). [Project page](https://yorkucvil.github.io/VCC/), Demo (coming soon)
 
 ![AllLayerTeaser](AllLayerTeaser.png)
