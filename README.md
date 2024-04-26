@@ -39,6 +39,7 @@ vit_b | 2 5 8 10 | 0 1 2 3 4 5 6 7 8 9 10
 mvit | 1 3 9 16 | 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
 clip_r50 | layer1 layer2 layer3 layer4 | layer1.0 layer1.1 layer1.2 layer2.0 layer2.1 layer2.2 layer2.3 layer3.0 layer3.1 layer3.2 layer3.3 layer3.4 layer3.5 layer4.0 layer4.1 layer4.2
 
+The checkpoint for the MViT model can be found [here](https://drive.google.com/file/d/15oRrMvKv7v9GFGqLs64sF2dsndMzdsew/view?usp=sharing).
 
 # VCC Visualization
 To visualize and save VCCs, use the following command:
