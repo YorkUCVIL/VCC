@@ -60,7 +60,7 @@ If you find this work useful, please consider citing:
 @inproceedings{kowal2024visual,
   title={Visual Concept Connectome (VCC): Open World Concept Discovery and their Interlayer Connections in Deep Models},
   author={Kowal, Matthew and Wildes, Richard P and Derpanis, Konstantinos G},
-  booktitle={Conference on Computer Vision and Pattern Recognition},
+  booktitle={arXiv preprint arXiv:2404.02233},
   year={2024}
 }
 ```
