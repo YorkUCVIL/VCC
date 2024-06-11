@@ -43,7 +43,7 @@ for model_dir in tqdm(os.listdir(parent_vcc_dir)):
             for k, v in vcc_dic['edge_weights'].items():
                 vcc_dic['edge_weights'][k] = {k2: np.mean(v2) for k2, v2 in v.items()}
             vcc_dic['images'] = {}
-            vcc_dic['size_spec'] = [len(cd.dic[bn]['concepts']) for bn in cd.bottlenecks] + ['1']
+            vcc_dic['size_spec'] = [len(cd.dic[bn]['concepts']) for bn in cd.bottlenecks] + [1]
             vcc_dic['layers'] = cd.bottlenecks + ['class']
 
             # create new directory for processed data

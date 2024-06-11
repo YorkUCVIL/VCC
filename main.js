@@ -6,8 +6,8 @@ var layer_spacing = 20;
 // Load your JSON data
 var connectome_spec = null; // Will be loaded from the JSON file
 
-async function loadJSON() {
-    const response = await fetch('demo_outputs_processed/clip_r50_4Lay/apron/vcc_info.json');
+async function loadJSON(json_path) {
+    const response = await fetch(json_path);
     connectome_spec = await response.json();
 }
 
@@ -28,15 +28,15 @@ function drawEdge(startPos, endPos, weight) {
     draw.line(startPos.x_right, startPos.y_middle, endPos.x_left, endPos.y_middle).stroke({ width: weight, color: '#000', opacity: weight });
 }
 
-async function main() {
-    await loadJSON();
+async function main(json_path) {
+    await loadJSON(json_path);
     draw = SVG('diagram').size(800, 800);
-
+    label_name = json_path.split("/")[2];
     let n_layers = connectome_spec.size_spec.length;
     let positions = {};
 
     // Calculate the maximum height of the canvas
-    let maxHeight = Math.max(...connectome_spec.size_spec.map(size => size * (concept_size + concept_spacing)));
+    let maxHeight = Math.max(...connectome_spec.size_spec.map(size => typeof size === 'string' ? parseInt(size) : size * (concept_size + concept_spacing)));
 
     // Draw nodes and store their positions
     for (let l = 0; l < n_layers; l++) {
@@ -62,26 +62,21 @@ async function main() {
         for (let edge in edges) {
             console.log((edge));
             let [deeperLayer, earlyLayer] = edge.split("-");
-            let [deeperConceptIndex, earlyConceptIndex] = [parseInt(deeperLayer.split(" ")[1].replace("apron_concept", "")) - 1, parseInt(earlyLayer.split(" ")[1].replace("apron_concept", "")) - 1];
-            if (deeperLayer.split(" ")[0] === "class"){
-                deeperConceptIndex = 1;
+            let [deeperConceptIndex, earlyConceptIndex] = [parseInt(deeperLayer.split(" ")[1].replace(label_name + "_concept", "")) - 1, parseInt(earlyLayer.split(" ")[1].replace(label_name + "_concept", "")) - 1];
+            if (deeperLayer.split(" ")[0] === "class") {
+                deeperConceptIndex = 0;
             }
             let deeperLayerName = deeperLayer.split(" ")[0];
             let earlyLayerName = earlyLayer.split(" ")[0];
 
-            let weightList = edges[edge];
-            weightList.forEach(weight => {
-                let startPos = positions[earlyLayerName][earlyConceptIndex];
-                let endPos = positions[deeperLayerName][deeperConceptIndex];
+            let weight = edges[edge]; // Now weight is a single float
 
-                if (startPos && endPos) {
-                    // check if class is present
-                    // if (deeperLayerName === "class") {
-                    //     drawEdge(startPos, endPos, weight);
-                    // }
-                    drawEdge(startPos, endPos, weight);
-                }
-            });
+            let startPos = positions[earlyLayerName][earlyConceptIndex];
+            let endPos = positions[deeperLayerName][deeperConceptIndex];
+
+            if (startPos && endPos) {
+                drawEdge(startPos, endPos, weight);
+            }
         }
     }
 
@@ -90,5 +85,7 @@ async function main() {
 
 // Runs main function on document load
 document.addEventListener("DOMContentLoaded", function(event) {
-    main();
+    // main('demo_outputs_processed/clip_r50_4Lay/apron/vcc_info.json');
+    // main('demo_outputs_processed/clip_r50_4Lay/bulbul/vcc_info.json');
+    main('demo_outputs_processed/clip_r50_4Lay/cab/vcc_info.json');
 });
