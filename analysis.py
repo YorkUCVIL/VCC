@@ -172,7 +172,7 @@ def parse_arguments(argv):
     parser = argparse.ArgumentParser()
 
     # file saving and loading
-    parser.add_argument('--working_dir', default='cvpr_outputs/ResNet50_4Lay', type=str,
+    parser.add_argument('--working_dir', default='outputs/ResNet50_4Lay', type=str,
                         help='Directory to load the pkl file from.')
     parser.add_argument('--graph_postfix', default='G.pkl', type=str,
                         help='Directory to load the pkl file from.')
