@@ -57,11 +57,13 @@ python exps/10VCC_analysis.py
 # Citation
 If you find this work useful, please consider citing:
 ```
-@inproceedings{kowal2024visual,
-  title={Visual Concept Connectome (VCC): Open World Concept Discovery and their Interlayer Connections in Deep Models},
-  author={Kowal, Matthew and Wildes, Richard P and Derpanis, Konstantinos G},
-  booktitle={arXiv preprint arXiv:2404.02233},
-  year={2024}
+@InProceedings{Kowal_2024_CVPR,
+    author    = {Kowal, Matthew and Wildes, Richard P. and Derpanis, Konstantinos G.},
+    title     = {Visual Concept Connectome (VCC): Open World Concept Discovery and their Interlayer Connections in Deep Models},
+    booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+    month     = {June},
+    year      = {2024},
+    pages     = {10895-10905}
 }
 ```
 
