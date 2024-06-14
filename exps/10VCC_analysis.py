@@ -1,6 +1,7 @@
 import os
 import json
 import random
+random.seed(1)
 
 # a dict of model names and the layers to extract features from
 model_layer_dict = {
@@ -20,12 +21,14 @@ random.shuffle(label_list)
 
 # generate VCCs for the first 10 classes
 for model, layers in model_layer_dict.items():
-    for cat in label_list[:10]:
+    for cat in label_list[:5]:
         cat = cat.split('/')[-1]
         command = ("python run_vcc.py --imagenet_path {} --model_to_run {} --feature_names {} --target_class {} "
                    "--working_dir outputs/{}_4Lay/{}").format(imagenet_path, model, layers, cat, model, cat)
-        print(command)
-        os.system(command)
+        cd_save_path = 'outputs/{}_4Lay/{}/cd.pkl'.format(model, cat)
+        if not os.path.exists(cd_save_path):
+            print(command)
+            os.system(command)
 
     # Perform graph topology analysis on generated VCCs
     os.system('python analysis.py --num_classes 10 --working_dir outputs/{}_4Lay'.format(model))
