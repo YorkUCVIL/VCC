@@ -83,9 +83,32 @@ async function main(json_path) {
     console.log(n_layers);
 }
 
+
+var model_paths = [
+    'clip_r50_4Lay', 'mvit_4Lay', 'resnet50_4Lay', 'tf_mobilenetv3_large_075_4Lay', 'vgg16_4Lay', 'vit_b_4Lay'
+];
+
+var class_paths = [
+    'golfcart', 'grey_fox', 'sunglass', 'tennis_ball'
+];
+
 // Runs main function on document load
 document.addEventListener("DOMContentLoaded", function(event) {
-    // main('demo_outputs_processed/clip_r50_4Lay/apron/vcc_info.json');
-    // main('demo_outputs_processed/clip_r50_4Lay/bulbul/vcc_info.json');
-    main('demo_outputs_processed/clip_r50_4Lay/cab/vcc_info.json');
+    // path structure: demo_outputs2_processed / model / class / vcc_info.json
+    // iterate through all the models, classes and vcc_info.json files
+//     model_dirs = listdir("demo_outputs2_processed")
+//     model_dirs.forEach(model_dir => {
+//         class_dirs = listdir("demo_outputs2_processed/" + model_dir)
+//         class_dirs.forEach(class_dir => {
+//             vcc_files = listdir("demo_outputs2_processed/" + model_dir + "/" + class_dir)
+//             vcc_files.forEach(vcc_file => {
+//                 main("demo_outputs2_processed/" + model_dir + "/" + class_dir + "/" + 'vcc_info.json');
+//             }
+//             )
+//         }
+//         )
+//     }
+//     )
+// });
+    main('demo_outputs2_processed/clip_r50_4Lay/sunglass/vcc_info.json');
 });

@@ -7,8 +7,8 @@ from PIL import Image
 import numpy as np
 import matplotlib.pyplot as plt
 # dir structure: parent_vcc_dir -> model_dir -> class_dir -> cd.pkl
-parent_vcc_dir = 'demo_outputs'
-save_dir = 'demo_outputs_processed'
+parent_vcc_dir = 'demo_outputs2'
+save_dir = 'demo_outputs2_processed'
 
 print('Saving processed data to:', save_dir)
 
@@ -69,6 +69,10 @@ for model_dir in tqdm(os.listdir(parent_vcc_dir)):
                         canvas[(row * 224):(row + 1) * 224,
                         col * 224:(col + 1) * 224, :] = \
                         cd.discovery_images[i]
+
+                    # save image
+                    canvas = Image.fromarray((canvas * 255).astype(np.uint8))
+                    canvas.save(os.path.join(processed_layer_dir, f'{concept_name}.png'))
                 else:
                     vcc_dic['images'][concept_layer] = [os.path.join(processed_dir, concept_layer, concept) for concept
                                                         in cd.dic[concept_layer]['concepts']]
@@ -112,9 +116,9 @@ for model_dir in tqdm(os.listdir(parent_vcc_dir)):
                         # plt.imshow(canvas)
                         # plt.show()
 
-                # save image
-                canvas = Image.fromarray((canvas * 255).astype(np.uint8))
-                canvas.save(os.path.join(processed_layer_dir, f'{concept_name}.png'))
+                        # save image
+                        canvas = Image.fromarray((canvas * 255).astype(np.uint8))
+                        canvas.save(os.path.join(processed_layer_dir, f'{concept_name}.png'))
 
 
             # save json file
