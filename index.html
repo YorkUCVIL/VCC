@@ -1,28 +1,69 @@
 <!DOCTYPE html>
 <html lang='en' xmlns="http://www.w3.org/1999/html">
-
 <head>
-        <title>Prototype</title>
-        <script src='svg.js'></script>
-        <script src='main.js'></script>
+    <title>Prototype</title>
+    <script src='svg.js'></script>
+    <script src='main.js'></script>
+    <style>
+        #title {
+            text-align: center;
+            font-size: 32px;
+            font-weight: bold;
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+        #authors {
+            text-align: center;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        #diagram_container {
+            display: inline-block;
+            border: solid;
+        }
+        #magnifier_container {
+            position: fixed;
+            display: inline-block;
+            border: solid;
+            text-align: center;
+        }
+        #controls_container {
+            display: inline-block;
+            border: solid;
+        }
+    </style>
 </head>
-
 <body style='margin:0;'>
-        <div id='diagram' style='display:inline-block;'></div>
+    <div id="title">Visual Concept Connectomes (CVPR 2024 Highlight)</div>
+    <div id="authors"><a href="https://mkowal2.github.io/">Matthew Kowal</a>,
+        <a href="https://lassonde.yorku.ca/users/wildes">Richard P. Wildes</a>,
+        <a href="https://csprofkgd.github.io/">Konstantinos G. Derpanis</a> -
+        (Special thanks to <a href="https://www.eecs.yorku.ca/~jjyu/">Jason J. Yu</a> for help on this demo)</div>
+    <div id='diagram_container' style='display:inline-block;border:solid;'>
+        <div id='diagram' style='display:inline-block;border:solid;'></div>
+    </div>
+    <div id='magnifier_container' style='position:fixed;display:inline-block'>
+        <img id='magnifier' style='width:300px;height:300px;'/>
+        <p style="margin-top: 7px; font-size: 22px;">Click on a node to get concept <br>
+            connection information!</p>
+    </div>
+    <div id='controls_container' style='display:inline-block;border:solid;'>
+        <h3>Pretrained Model</h3>
+        <h3>Selected Model: <span id="selected_model">CLIP</span></h3>
         <div style='background-color:grey;display:inline-block;'>
-                <button>
-                        CLIP
-                </button>
-                <button>
-                        MViT
-                </button>
-                <button>
-                        ResNet50
-                </button>
-                <button>
-                        VGG16
-                </button>
+            <button id="clip_r50_4Lay" onclick='select_model("clip_r50_4Lay")'>CLIP</button>
+            <button id="mvit_4Lay" onclick='select_model("mvit_4Lay")'>MViT</button>
+            <button id="resnet50_4Lay" onclick='select_model("resnet50_4Lay")'>ResNet50</button>
+            <button id="vgg16_4Lay" onclick='select_model("vgg16_4Lay")'>VGG16</button>
         </div>
+        <h3>ImageNet Class</h3>
+        <h3>Selected Class: <span id="selected_class">tennis_ball</span></h3>
+        <div style='background-color:grey;display:inline-block;'>
+            <button onclick='select_class("golfcart")'>Golfcart</button>
+            <button onclick='select_class("grey_fox")'>Grey fox</button>
+            <button onclick='select_class("sunglass")'>Sunglass</button>
+            <button onclick='select_class("tennis_ball")'>Tennis ball</button>
+        </div>
+    </div>
 </body>
-
 </html>
