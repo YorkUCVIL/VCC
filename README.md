@@ -5,7 +5,7 @@
 
 Official Implementation of our CVPR 2024 (Highlight) Paper.
 
-[Paper](https://arxiv.org/abs/2404.02233). [Project page](https://yorkucvil.github.io/VCC/), Demo (coming soon)
+[Paper](https://arxiv.org/abs/2404.02233). [Project page](https://yorkucvil.github.io/VCC/), [Demo](https://mkowal2.github.io/VCC_Demo/)
 
 ![AllLayerTeaser](AllLayerTeaser.png)
 
@@ -20,7 +20,7 @@ pip install 'git+https://github.com/facebookresearch/fvcore'
 
 # Data Preparation
 - Download ImageNet from http://image-net.org/download
-- 20 sets of random images from the Broden dataset are located in data/random* folders
+- 20 sets of random images from the Broden dataset are located in data/random* folders. More sets of random images will improve the statistical significance of the results when pruning VCC edges.
 
 # VCC Generation
 To generate VCC for a model, dataset and target class, use the following command and launch run_vcc.py:
